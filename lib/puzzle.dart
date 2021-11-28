@@ -43,6 +43,17 @@ class Puzzle {
     return text;
   }
 
+  List<int> knownValues = [];
+
+  bool updateValues(Clue clue, Set<int> possibleValue) {
+    possibleValue.removeAll(knownValues);
+    var updated = clue.updateValues(possibleValue);
+    if (possibleValue.length == 1) {
+      knownValues.addAll(possibleValue);
+    }
+    return updated;
+  }
+
   Map<Clue, Answer> solution = {};
   Map<Clue, int>? lastSolution;
   List<Clue> order = [];

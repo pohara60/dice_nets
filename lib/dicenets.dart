@@ -354,7 +354,8 @@ class dicenets {
       if (clue.solve!(clue, possibleValue)) updated = true;
       // If no Values returned then Solve function could not solve
       if (possibleValue.isNotEmpty) {
-        if (clue.updateValues(possibleValue)) updated = true;
+        // Check for duplicate values => Clue iterations=285 (142 updates) instead of 311 (144 updates)
+        if (puzzle.updateValues(clue, possibleValue)) updated = true;
         if (clue.finalise()) updated = true;
       }
     }
